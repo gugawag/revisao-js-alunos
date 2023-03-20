@@ -1,15 +1,16 @@
 class AlunoRepositorio {
+    private _alunos: Aluno[];
     constructor() {
         this._alunos = [];
     }
 
-    inserir(aluno) {
+    inserir(aluno: Aluno): Aluno {
         this._alunos.push(aluno);
         return aluno;
     }
 
-    remover(nome) {
-        const indxRemocao = this._alunos.indexOf(aluno => aluno.nome === nome);
+    remover(nome: string) {
+        const indxRemocao = this._alunos.findIndex((aluno: Aluno) => aluno.nome === nome);
         this._alunos.splice(indxRemocao, 1);
     }
 
@@ -17,7 +18,7 @@ class AlunoRepositorio {
         return this._alunos;
     }
 
-    buscarPorNome(nome) {
+    buscarPorNome(nome: string) {
         return this._alunos.filter(aluno => aluno.nome === nome);
     }
 }

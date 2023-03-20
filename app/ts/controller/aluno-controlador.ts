@@ -1,11 +1,13 @@
 class AlunoControlador {
+
+    private alunoServico: AlunoServico;
     constructor() {
         this.alunoServico = new AlunoServico();
     }
 
     inserir() {
-        const nomeAluno = document.querySelector("#nome").value;
-        const idadeAluno = Number(document.querySelector("#idade").value);
+        const nomeAluno = (<HTMLInputElement>document.querySelector("#nome")).value;
+        const idadeAluno = Number((<HTMLInputElement>document.querySelector("#idade")).value);
         const aluno = this.alunoServico.inserir(nomeAluno, idadeAluno);
         if (aluno) {
             this.mostrarAlunoNoHTML(nomeAluno, idadeAluno);
@@ -15,7 +17,7 @@ class AlunoControlador {
         }
     }
 
-    mostrarAlunoNoHTML(nome, idade) {
+    mostrarAlunoNoHTML(nome: string, idade: number) {
         const elementoP = document.createElement("p");
         elementoP.textContent = `${nome} - ${idade}`;
 
@@ -24,14 +26,14 @@ class AlunoControlador {
 
         elementoBotaoApagar.addEventListener('click', (event) => {
                 this.removerAlunoDaLista(nome);
-                event.target.parentElement.remove();
+                (<Element>event.target).parentElement.remove();
             }
         );
         elementoP.appendChild(elementoBotaoApagar);
         document.body.appendChild(elementoP);
     }
 
-    removerAlunoDaLista(nome) {
+    removerAlunoDaLista(nome: string) {
         this.alunoServico.remover(nome);
     }
 

@@ -1,6 +1,7 @@
 class Aluno {
-    constructor(nome, idade) {
-        this._nome = nome;
+
+    idade: number;
+    constructor(private _nome: string, idade: number) {
         this.idade = idade;
     }
 
